@@ -1,15 +1,40 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import factory.BasicTourFactory;
+import factory.TourFactory;
+import observer.PriceDropObserver;
+import observer.TourAgency;
+import observer.TourObserver;
+import touragent.Client;
+import touragent.Tour;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        // Создаем тур-агентство
+        TourAgency tourAgency = new TourAgency();
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        // Добавляем клиентов
+        Client client1 = new Client("Иван");
+        Client client2 = new Client("Мария");
+        tourAgency.registerClient(client1);
+        tourAgency.registerClient(client2);
+
+        // Добавляем клиентов-наблюдателей
+        TourObserver clientObserver1 = new PriceDropObserver("Иван");
+        TourObserver clientObserver2 = new PriceDropObserver("Мария");
+        tourAgency.addObserver(clientObserver1);
+        tourAgency.addObserver(clientObserver2);
+
+        // Создаем фабрику для создания туров
+        TourFactory tourFactory = new BasicTourFactory();
+
+        // Добавляем туры и уведомляем клиентов
+        Tour tour1 = tourFactory.createTour("Экскурсия в Париж", 1500);
+        tourAgency.addTour(tour1);
+
+        Tour tour2 = tourFactory.createTour("Отдых на Мальдивах", 5000);
+        tourAgency.addTour(tour2);
+
+        // Бронируем туры для клиентов
+        tourAgency.bookTour(client1, tour1);
+        tourAgency.bookTour(client2, tour2);
     }
 }
