@@ -1,6 +1,6 @@
 import factory.BasicTourFactory;
 import factory.TourFactory;
-import observer.PriceDropObserver;
+import observer.PriceObserver;
 import observer.TourAgency;
 import observer.TourObserver;
 import touragent.Client;
@@ -18,8 +18,8 @@ public class Main {
         tourAgency.registerClient(client2);
 
         // Добавляем клиентов-наблюдателей
-        TourObserver clientObserver1 = new PriceDropObserver("Иван");
-        TourObserver clientObserver2 = new PriceDropObserver("Мария");
+        TourObserver clientObserver1 = new PriceObserver("Иван");
+        TourObserver clientObserver2 = new PriceObserver("Мария");
         tourAgency.subscribeObserver(clientObserver1);
         tourAgency.subscribeObserver(clientObserver2);
 

@@ -2,10 +2,10 @@ package observer;
 
 import touragent.Tour;
 
-public class PriceDropObserver implements TourObserver {
+public class PriceObserver implements TourObserver {
     private String clientName;
 
-    public PriceDropObserver(String clientName) {
+    public PriceObserver(String clientName) {
         this.clientName = clientName;
     }
 
