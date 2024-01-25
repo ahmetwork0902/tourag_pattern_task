@@ -33,8 +33,16 @@ public class Main {
         Tour tour2 = tourFactory.createTour("Отдых на Мальдивах", 5000);
         tourAgency.addTour(tour2);
 
+        Tour tour3 = tourFactory.createTour("Поездка в Египет", 2800);
+        tourAgency.addTour(tour3);
+
+        // Изменяем стоимость тура (повышаем) и уведомляем клиентов
+        tour3.setPrice(3000);
+        tourAgency.addTour(tour3);
+
         // Бронируем туры для клиентов
         tourAgency.bookTour(client1, tour1);
+        tourAgency.bookTour(client2, tour3);
         tourAgency.bookTour(client2, tour2);
     }
 }

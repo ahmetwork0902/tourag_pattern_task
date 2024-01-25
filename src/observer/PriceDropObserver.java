@@ -11,6 +11,12 @@ public class PriceDropObserver implements TourObserver {
 
     @Override
     public void update(Tour tour) {
-        System.out.println("Уведомление для клиента " + clientName + ": цена на тур " + tour.getName() + " снижена.");
+        if (tour.isPriceIncreased()) {
+            System.out.println("Уведомление для клиента " + clientName + ": цена на тур "
+                    + tour.getName() + " повышена.");
+        } else {
+            System.out.println("Уведомление для клиента " + clientName + ": цена на тур "
+                    + tour.getName() + " снижена.");
+        }
     }
 }
