@@ -37,6 +37,10 @@ public class Main {
         tourAgency.addTour(tour3);
 
         // Изменяем стоимость тура (повышаем) и уведомляем клиентов
+        tour1.setPrice(1600);
+        tourAgency.addTour(tour1);
+        tour2.setPrice(5500);
+        tourAgency.addTour(tour2);
         tour3.setPrice(3000);
         tourAgency.addTour(tour3);
 
