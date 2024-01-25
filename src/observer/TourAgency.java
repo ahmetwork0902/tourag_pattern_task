@@ -6,29 +6,27 @@ import touragent.Tour;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
 
-public class TourAgency extends Observable {
+public class TourAgency {
     private List<TourObserver> observers = new ArrayList<>();
     private List<Client> clients = new ArrayList<>();
     private List<Booking> bookings = new ArrayList<>();
 
-    public void addObserver(TourObserver observer) {
+    public void subscribeObserver(TourObserver observer) {
         observers.add(observer);
     }
 
-    public void removeObserver(TourObserver observer) {
+    public void unsubscribeObserver(TourObserver observer) {
         observers.remove(observer);
     }
 
-    public void notifyObservers(Tour tour) {
+    private void notifyObservers(Tour tour) {
         for (TourObserver observer : observers) {
             observer.update(tour);
         }
     }
 
     public void addTour(Tour tour) {
-        setChanged();
         notifyObservers(tour);
     }
 
@@ -39,6 +37,10 @@ public class TourAgency extends Observable {
     public void bookTour(Client client, Tour tour) {
         Booking booking = new Booking(client, tour);
         bookings.add(booking);
+        printBookingDetails(client, tour);
+    }
+
+    private void printBookingDetails(Client client, Tour tour) {
         System.out.println("Бронирование тура " + tour.getName() + " для клиента " + client.getName());
     }
 }

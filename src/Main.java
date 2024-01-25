@@ -20,8 +20,8 @@ public class Main {
         // Добавляем клиентов-наблюдателей
         TourObserver clientObserver1 = new PriceDropObserver("Иван");
         TourObserver clientObserver2 = new PriceDropObserver("Мария");
-        tourAgency.addObserver(clientObserver1);
-        tourAgency.addObserver(clientObserver2);
+        tourAgency.subscribeObserver(clientObserver1);
+        tourAgency.subscribeObserver(clientObserver2);
 
         // Создаем фабрику для создания туров
         TourFactory tourFactory = new BasicTourFactory();
